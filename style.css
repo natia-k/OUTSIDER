@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(5px) brightness(0.5);
+  transform: scale(1.05);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.text {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.show {
+  opacity: 1;
+}
