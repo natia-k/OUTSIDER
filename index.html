@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUTSIDER</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="grain"></div>
-    
-    <img src="images/room.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.2) grayscale(100%); z-index:1;">
 
-    <img src="images/room.jpg" class="ghost-entry">
+    <div class="base-layer">
+        <img src="images/room.jpg" alt="room">
+    </div>
 
-    <div class="chat-layer" id="chat-box">
-        <p id="question-display">Are you waiting for someone?</p>
-        <input type="text" id="existential-input" autocomplete="off" placeholder="...">
+    <div class="ghost-container">
+        <img src="images/room.jpg" class="ghost ghost1">
+        <img src="images/room.jpg" class="ghost ghost2">
+        <img src="images/room.jpg" class="ghost ghost3">
+    </div>
+
+    <div class="interface">
+        <div class="existential">
+            <p id="question">Are you actually here?</p>
+            <input type="text" id="answer" placeholder="type and press enter" autocomplete="off">
+        </div>
     </div>
 
     <script src="script.js"></script>
