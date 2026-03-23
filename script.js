@@ -1,27 +1,45 @@
-const t1 = document.getElementById("text1");
-const t2 = document.getElementById("text2");
-const voidEl = document.getElementById("void");
-const hidden = document.getElementById("hidden");
+// script.js
+const questions = [
+    "Are you waiting for someone?",
+    "Does your shadow look like you?",
+    "Is this Berlin, or just a memory of it?",
+    "Are you an outsider, or are you the one who left?",
+    "What is the last thing you want to say?"
+];
 
-const base = document.querySelector(".base");
-const ghost = document.querySelector(".ghost");
+let qIndex = 0;
 
-// timing
-setTimeout(() => t1.classList.add("show"), 2500);
-setTimeout(() => t2.classList.add("show"), 5200);
-setTimeout(() => document.body.classList.add("enter"), 8000);
+window.onload = () => {
+    const chatBox = document.getElementById('chat-box');
+    const input = document.getElementById('existential-input');
+    const display = document.getElementById('question-display');
 
-// subtle double exposure movement
-document.addEventListener("mousemove", (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 2;
-  const y = (e.clientY / window.innerHeight - 0.5) * 2;
-  const move = 5;
+    // Show the chat 10 seconds after the ghost starts manifesting
+    setTimeout(() => {
+        chatBox.style.opacity = "1";
+    }, 10000);
 
-  base.style.transform = `scale(1.08) translate(${x * move}px, ${y * move}px)`;
-  ghost.style.transform = `scale(1.1) translate(${x * -move}px, ${y * -move}px)`;
-});
-
-// hidden layer
-voidEl.addEventListener("click", () => {
-  hidden.classList.add("active");
-});
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && input.value.trim() !== "") {
+            
+            // --- DATA READY FOR BACKEND ---
+            // This is where your backend dev will "POST" the data
+            console.log(`User Answered: "${input.value}" to Question: "${questions[qIndex]}"`);
+            
+            // Next Question Transition
+            qIndex++;
+            input.value = "";
+            
+            if (qIndex < questions.length) {
+                display.style.opacity = 0;
+                setTimeout(() => {
+                    display.innerText = questions[qIndex];
+                    display.style.opacity = 1;
+                }, 1000);
+            } else {
+                display.innerText = "You have been heard.";
+                input.style.display = "none";
+            }
+        }
+    });
+};
