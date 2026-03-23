@@ -8,23 +8,23 @@
 </head>
 <body>
     <div class="grain"></div>
+    
+    <img src="images/room.jpg" id="base-room" class="bg-base">
 
-    <div class="base-layer">
-        <img src="images/room.jpg" alt="room">
-    </div>
-
-    <div class="ghost-container">
-        <img src="images/room.jpg" class="ghost ghost1">
-        <img src="images/room.jpg" class="ghost ghost2">
-        <img src="images/room.jpg" class="ghost ghost3">
+    <div class="ghost-wrapper">
+        <img src="images/room.jpg" class="ghost ghost-1">
+        <img src="images/room.jpg" class="ghost ghost-2">
     </div>
 
     <div class="interface">
         <div class="existential">
             <p id="question">Are you actually here?</p>
-            <input type="text" id="answer" placeholder="type and press enter" autocomplete="off">
+            <input type="text" id="answer" placeholder="type and press enter" spellcheck="false" autocomplete="off">
         </div>
     </div>
+
+    <div class="meta top-left">OUTSIDER // 2026</div>
+    <div class="meta bottom-right">Tbilisi . Berlin . Somewhere between</div>
 
     <script src="script.js"></script>
 </body>
