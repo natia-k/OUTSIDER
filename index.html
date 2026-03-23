@@ -7,66 +7,75 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="scene">
-    <!-- DOUBLE EXPOSURE BACKGROUND -->
-    <img src="images/room.jpg" alt="" class="bg base" />
-    <img src="images/room.jpg" alt="" class="bg ghost" />
+  <main class="site-shell">
 
-    <!-- GRAIN -->
-    <div class="grain"></div>
+    <!-- LANDING / THRESHOLD -->
+    <section class="landing" id="landing">
+      <div class="landing-bg">
+        <img src="images/room.jpg" alt="Outsider room" class="bg-layer base" />
+        <img src="images/room.jpg" alt="" class="bg-layer ghost" aria-hidden="true" />
+        <div class="grain" aria-hidden="true"></div>
+      </div>
 
-    <!-- ENTRY TEXT -->
-    <div class="text" id="text1">You weren’t supposed to find this.</div>
-    <div class="text" id="text2">...stay.</div>
+      <div class="landing-copy">
+        <p class="intro-line" id="text1">You weren’t supposed to find this.</p>
+        <p class="intro-line" id="text2">...stay.</p>
+      </div>
+    </section>
 
-    <!-- WORLD -->
-    <div class="enter-world">
-      <div class="world-label">Berlin. Tbilisi. Somewhere between.</div>
+    <!-- WORLD / MAIN EXPERIENCE -->
+    <section class="world" id="world" aria-hidden="true">
+      <div class="world-meta">
+        <p class="world-label">Berlin. Tbilisi. Somewhere between.</p>
+      </div>
 
       <div class="field">
-        <a href="#" class="project p1">
-          <span class="meta">CASE 01</span>
-          <span class="title">I knew every street.</span>
-        </a>
 
-        <a href="#" class="project p2">
-          <span class="meta">CASE 02</span>
-          <span class="title">Visible. Not fully seen.</span>
-        </a>
+        <article class="project project-1" data-project>
+          <span class="project-meta">CASE 01</span>
+          <h2 class="project-title">I knew every street.</h2>
+        </article>
 
-        <a href="#" class="project p3">
-          <span class="meta">CASE 03</span>
-          <span class="title">Somewhere between.</span>
-        </a>
+        <article class="project project-2" data-project>
+          <span class="project-meta">CASE 02</span>
+          <h2 class="project-title">Visible. Not fully seen.</h2>
+        </article>
 
-        <div class="ghost-text">უცხო</div>
+        <article class="project project-3" data-project>
+          <span class="project-meta">CASE 03</span>
+          <h2 class="project-title">Somewhere between.</h2>
+        </article>
 
-        <!-- HIDDEN VOID -->
-        <div class="void-trigger" id="voidTrigger" aria-hidden="true"></div>
+        <div class="georgian-fragment" aria-hidden="true">უცხო</div>
+
+        <!-- hidden trigger -->
+        <button class="void-trigger" id="voidTrigger" aria-label="Open hidden layer"></button>
       </div>
-    </div>
+    </section>
 
     <!-- HIDDEN LAYER -->
-    <div class="hidden-layer" id="hiddenLayer">
-      <div class="hidden-copy">
-        <div class="hidden-line">You weren’t meant to see this.</div>
+    <section class="hidden-layer" id="hiddenLayer" aria-hidden="true">
+      <div class="hidden-inner">
+        <p class="hidden-kicker">You weren’t meant to see this.</p>
+
         <div class="hidden-fragments">
           <p>I went back.</p>
           <p>Nothing had changed.</p>
           <p>I had.</p>
-          <br />
+
           <p>I knew every street.</p>
           <p>None of them knew me.</p>
-          <br />
+
           <p>Two places.</p>
           <p>No position.</p>
-          <br />
+
           <p>Visible.</p>
           <p>Not fully seen.</p>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+
+  </main>
 
   <script src="script.js"></script>
 </body>
