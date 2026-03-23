@@ -1,10 +1,13 @@
+/* RESET */
 body {
   margin: 0;
   background: black;
   overflow: hidden;
   font-family: Arial, sans-serif;
+  cursor: default;
 }
 
+/* MAIN SCENE */
 .scene {
   position: fixed;
   inset: 0;
@@ -12,14 +15,14 @@ body {
   background: black;
 }
 
+/* BACKGROUND LAYERS (DOUBLE EXPOSURE) */
 .bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.06);
-  transition: opacity 2.4s ease, transform 2.8s ease, filter 2.8s ease;
+  transition: transform 0.4s ease-out, filter 2.8s ease, opacity 2.8s ease;
 }
 
 .base {
@@ -31,19 +34,20 @@ body {
 .ghost {
   filter: blur(14px) brightness(0.5) saturate(0.7);
   opacity: 0;
-  transform: scale(1.1) translateX(0) translateY(0);
   z-index: 2;
 }
 
+/* FILM GRAIN */
 .grain {
   position: absolute;
   inset: 0;
   background: url('https://grainy-gradients.vercel.app/noise.svg');
   opacity: 0.14;
   pointer-events: none;
-  z-index: 4;
+  z-index: 10;
 }
 
+/* ENTRY TEXT */
 .text {
   position: absolute;
   left: 42px;
@@ -54,7 +58,7 @@ body {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 1.6s ease, transform 1.6s ease;
-  z-index: 5;
+  z-index: 20;
 }
 
 #text2 {
@@ -66,14 +70,14 @@ body {
   transform: translateY(0);
 }
 
+/* ENTER STATE */
 .enter-world {
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.02);
   opacity: 0;
   pointer-events: none;
   transition: opacity 2.5s ease;
-  z-index: 3;
+  z-index: 5;
 }
 
 .world-label {
@@ -88,14 +92,88 @@ body {
   transition: opacity 2s ease 0.6s, transform 2s ease 0.6s;
 }
 
+/* FIELD (ANTI-GRID) */
+.field {
+  position: absolute;
+  inset: 0;
+}
+
+/* PROJECT BLOCKS */
+.project {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+  max-width: 300px;
+
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px);
+
+  transition:
+    opacity 1.8s ease,
+    filter 1.8s ease,
+    transform 1.8s ease;
+}
+
+/* SLOW REVEAL ON HOVER */
+.project:hover {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* PROJECT TEXT */
+.project .meta {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  opacity: 0.6;
+}
+
+.project .title {
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 300;
+}
+
+/* POSITIONS (BROKEN LAYOUT) */
+.p1 {
+  top: 12%;
+  left: 8%;
+}
+
+.p2 {
+  top: 46%;
+  left: 48%;
+  max-width: 360px;
+}
+
+.p3 {
+  top: 28%;
+  right: 12%;
+  text-align: right;
+}
+
+/* GEORGIAN GHOST TEXT */
+.ghost-text {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.06);
+  font-size: 120px;
+  letter-spacing: 0.08em;
+  pointer-events: none;
+}
+
+/* ENTER ANIMATION STATES */
 body.enter .ghost {
-  opacity: 0.42;
-  transform: scale(1.12) translateX(12px) translateY(-6px);
+  opacity: 0.4;
 }
 
 body.enter .base {
   filter: blur(1.5px) brightness(0.55) saturate(1);
-  transform: scale(1.1);
 }
 
 body.enter #text1,
@@ -106,6 +184,7 @@ body.enter #text2 {
 
 body.enter .enter-world {
   opacity: 1;
+  pointer-events: auto;
 }
 
 body.enter .world-label {
@@ -113,7 +192,17 @@ body.enter .world-label {
   transform: translateY(0);
 }
 
+body.enter .project {
+  opacity: 0.7;
+  transform: translateY(0);
+}
+
+/* SUBTLE BREATHING */
 @keyframes breathe {
-  0%, 100% { transform: scale(1.06); }
-  50% { transform: scale(1.09); }
+  0%, 100% {
+    transform: scale(1.06);
+  }
+  50% {
+    transform: scale(1.09);
+  }
 }
