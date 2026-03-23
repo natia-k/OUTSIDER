@@ -1,183 +1,79 @@
-body {
-  margin: 0;
-  background: #000;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+/* style.css */
+:root {
+  --bg: #000000;
+  --text: #ffffff;
+  --ghost-color: rgba(255, 255, 255, 0.2);
+}
+
+body, html {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', serif; /* Use a clean serif for an 'older' feel */
+  height: 100vh;
   overflow: hidden;
+  cursor: crosshair;
 }
 
-/* STAGE */
-.stage {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
+.grain {
+  position: fixed; inset: 0;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.04; pointer-events: none; z-index: 100;
 }
 
-/* MEMORY LAYER */
-.memory {
-  position: absolute;
-  inset: 0;
-}
-
-.bg {
+/* THE GHOST: Starts invisible, scales and blurs in */
+.ghost-entry {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease-out, filter 2s ease, opacity 2s ease;
-}
-
-.base {
-  filter: blur(6px) brightness(0.35);
-  transform: scale(1.06);
-}
-
-.ghost {
-  filter: blur(14px) brightness(0.5);
+  filter: grayscale(100%) blur(40px) brightness(0.6);
+  mix-blend-mode: screen;
   opacity: 0;
+  animation: ghost-manifest 15s ease-in-out forwards;
+  z-index: 2;
 }
 
-.grain {
+@keyframes ghost-manifest {
+  0% { opacity: 0; transform: scale(1.1); filter: blur(50px); }
+  50% { opacity: 0.15; filter: blur(15px); }
+  100% { opacity: 0.1; transform: scale(1); filter: blur(8px); }
+}
+
+/* THE CHAT: Minimalist input */
+.chat-layer {
   position: absolute;
-  inset: 0;
-  background: url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity: 0.12;
-  pointer-events: none;
-}
-
-/* INTERFACE */
-.interface {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.corner {
-  position: absolute;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.85);
-  opacity: 0;
-  transform: translateY(6px);
-  transition: 1.2s ease;
-}
-
-.corner.left {
-  left: 40px;
-  bottom: 40px;
-}
-
-.corner.right {
-  right: 40px;
-  bottom: 40px;
-}
-
-.location {
-  position: absolute;
-  right: 40px;
-  top: 40px;
-  font-size: 11px;
-  opacity: 0;
-  transition: 1.5s ease 0.5s;
-}
-
-/* FRAGMENTS */
-.fragments {
-  position: absolute;
-  inset: 0;
-}
-
-.fragment {
-  position: absolute;
-  font-weight: 300;
-  color: white;
-  opacity: 0;
-  filter: blur(8px);
-  transition: 1.6s ease;
-}
-
-.fragment.main {
-  top: 30%;
-  left: 18%;
-  font-size: 42px;
-}
-
-.fragment.secondary {
-  top: 55%;
-  right: 18%;
-  font-size: 22px;
-  text-align: right;
-}
-
-.ghost-word {
-  position: absolute;
-  top: 20%;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 140px;
-  color: rgba(255,255,255,0.05);
+  z-index: 50;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  opacity: 0; /* JS will reveal this */
+  transition: opacity 4s ease-in;
 }
 
-/* VOID */
-.void {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  left: 40%;
-  top: 60%;
-  cursor: pointer;
+#question-display {
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
-/* HIDDEN */
-.hidden {
-  position: fixed;
-  inset: 0;
-  background: #000;
+#existential-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   color: white;
-  opacity: 0;
-  pointer-events: none;
-  transition: 1.2s ease;
-}
-
-.hidden-inner {
-  padding: 40px;
-  max-width: 600px;
-}
-
-.hidden-line {
-  font-size: 12px;
-  margin-bottom: 40px;
-}
-
-.hidden-text p {
-  font-size: 32px;
-  margin: 0 0 8px;
-}
-
-/* STATES */
-.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.enter .ghost {
-  opacity: 0.4;
-}
-
-.enter .base {
-  filter: blur(2px) brightness(0.6);
-}
-
-.enter .fragment {
-  opacity: 0.7;
-  filter: blur(0);
-}
-
-.enter .location {
-  opacity: 1;
-}
-
-.hidden.active {
-  opacity: 1;
-  pointer-events: auto;
+  width: 100%;
+  font-family: serif;
+  font-style: italic;
+  font-size: 20px;
+  text-align: center;
+  outline: none;
+  padding: 5px;
 }
