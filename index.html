@@ -2,81 +2,89 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OUTSIDER</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <main class="site-shell">
 
-    <!-- LANDING / THRESHOLD -->
-    <section class="landing" id="landing">
-      <div class="landing-bg">
-        <img src="images/room.jpg" alt="Outsider room" class="bg-layer base" />
-        <img src="images/room.jpg" alt="" class="bg-layer ghost" aria-hidden="true" />
-        <div class="grain" aria-hidden="true"></div>
+<main class="stage">
+
+  <!-- MEMORY LAYER -->
+  <div class="memory">
+    <img src="images/room.jpg" class="bg base" />
+    <img src="images/room.jpg" class="bg ghost" />
+    <div class="grain"></div>
+  </div>
+
+  <!-- INTERFACE -->
+  <div class="interface">
+
+    <div class="corner left" id="text1">
+      You weren’t supposed to find this.
+    </div>
+
+    <div class="corner right" id="text2">
+      ...stay.
+    </div>
+
+    <div class="location">
+      Berlin. Tbilisi. Somewhere between.
+    </div>
+
+  </div>
+
+  <!-- FRAGMENTS -->
+  <div class="fragments">
+
+    <div class="fragment main">
+      I knew every street.
+    </div>
+
+    <div class="fragment secondary">
+      Visible. Not fully seen.
+    </div>
+
+    <div class="ghost-word">
+      უცხო
+    </div>
+
+    <div class="void" id="void"></div>
+
+  </div>
+
+  <!-- HIDDEN -->
+  <div class="hidden" id="hidden">
+    <div class="hidden-inner">
+
+      <p class="hidden-line">You weren’t meant to see this.</p>
+
+      <div class="hidden-text">
+        <p>I went back.</p>
+        <p>Nothing had changed.</p>
+        <p>I had.</p>
+
+        <br/>
+
+        <p>I knew every street.</p>
+        <p>None of them knew me.</p>
+
+        <br/>
+
+        <p>Two places.</p>
+        <p>No position.</p>
+
+        <br/>
+
+        <p>Visible.</p>
+        <p>Not fully seen.</p>
       </div>
 
-      <div class="landing-copy">
-        <p class="intro-line" id="text1">You weren’t supposed to find this.</p>
-        <p class="intro-line" id="text2">...stay.</p>
-      </div>
-    </section>
+    </div>
+  </div>
 
-    <!-- WORLD / MAIN EXPERIENCE -->
-    <section class="world" id="world" aria-hidden="true">
-      <div class="world-meta">
-        <p class="world-label">Berlin. Tbilisi. Somewhere between.</p>
-      </div>
+</main>
 
-      <div class="field">
-
-        <article class="project project-1" data-project>
-          <span class="project-meta">CASE 01</span>
-          <h2 class="project-title">I knew every street.</h2>
-        </article>
-
-        <article class="project project-2" data-project>
-          <span class="project-meta">CASE 02</span>
-          <h2 class="project-title">Visible. Not fully seen.</h2>
-        </article>
-
-        <article class="project project-3" data-project>
-          <span class="project-meta">CASE 03</span>
-          <h2 class="project-title">Somewhere between.</h2>
-        </article>
-
-        <div class="georgian-fragment" aria-hidden="true">უცხო</div>
-
-        <!-- hidden trigger -->
-        <button class="void-trigger" id="voidTrigger" aria-label="Open hidden layer"></button>
-      </div>
-    </section>
-
-    <!-- HIDDEN LAYER -->
-    <section class="hidden-layer" id="hiddenLayer" aria-hidden="true">
-      <div class="hidden-inner">
-        <p class="hidden-kicker">You weren’t meant to see this.</p>
-
-        <div class="hidden-fragments">
-          <p>I went back.</p>
-          <p>Nothing had changed.</p>
-          <p>I had.</p>
-
-          <p>I knew every street.</p>
-          <p>None of them knew me.</p>
-
-          <p>Two places.</p>
-          <p>No position.</p>
-
-          <p>Visible.</p>
-          <p>Not fully seen.</p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
