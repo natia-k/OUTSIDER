@@ -1,264 +1,183 @@
-:root {
-  --bg: #000;
-  --fg: #fff;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  min-height: 100%;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: Arial, sans-serif;
-}
-
 body {
-  overflow: hidden;
-}
-
-button,
-input,
-textarea {
-  font: inherit;
-}
-
-.site-shell {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  margin: 0;
   background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
 }
 
-/* LANDING */
-.landing,
-.world,
-.hidden-layer {
-  position: absolute;
-  inset: 0;
-}
-
-.landing {
-  z-index: 10;
-}
-
-.landing-bg {
-  position: absolute;
+/* STAGE */
+.stage {
+  position: fixed;
   inset: 0;
   overflow: hidden;
 }
 
-.bg-layer {
+/* MEMORY LAYER */
+.memory {
+  position: absolute;
+  inset: 0;
+}
+
+.bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition:
-    transform 0.35s ease-out,
-    opacity 1.8s ease,
-    filter 1.8s ease;
+  transition: transform 0.4s ease-out, filter 2s ease, opacity 2s ease;
 }
 
 .base {
-  z-index: 1;
-  filter: blur(6px) brightness(0.32);
+  filter: blur(6px) brightness(0.35);
   transform: scale(1.06);
 }
 
 .ghost {
-  z-index: 2;
+  filter: blur(14px) brightness(0.5);
   opacity: 0;
-  filter: blur(14px) brightness(0.45);
-  transform: scale(1.1);
 }
 
 .grain {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
   opacity: 0.12;
   pointer-events: none;
-  background: url('https://grainy-gradients.vercel.app/noise.svg');
 }
 
-.landing-copy {
+/* INTERFACE */
+.interface {
   position: absolute;
-  left: 40px;
-  bottom: 30px;
-  z-index: 4;
-}
-
-.intro-line {
-  margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 1.3s ease, transform 1.3s ease;
-}
-
-.intro-line + .intro-line {
-  margin-top: 8px;
-}
-
-.intro-line.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* WORLD */
-.world {
-  z-index: 20;
-  opacity: 0;
+  inset: 0;
   pointer-events: none;
-  transition: opacity 1.8s ease;
 }
 
-.world.is-visible {
-  opacity: 1;
-  pointer-events: auto;
+.corner {
+  position: absolute;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.85);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: 1.2s ease;
 }
 
-.world-meta {
+.corner.left {
+  left: 40px;
+  bottom: 40px;
+}
+
+.corner.right {
+  right: 40px;
+  bottom: 40px;
+}
+
+.location {
   position: absolute;
   right: 40px;
-  bottom: 30px;
-  z-index: 3;
+  top: 40px;
+  font-size: 11px;
+  opacity: 0;
+  transition: 1.5s ease 0.5s;
 }
 
-.world-label {
-  margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  opacity: 0.9;
-}
-
-.field {
+/* FRAGMENTS */
+.fragments {
   position: absolute;
   inset: 0;
 }
 
-.project {
+.fragment {
   position: absolute;
-  max-width: 320px;
-  opacity: 0.35;
-  filter: blur(8px);
-  transform: translateY(18px);
-  transition:
-    opacity 1.2s ease,
-    filter 1.2s ease,
-    transform 1.2s ease;
-}
-
-.project.is-active,
-.project:hover {
-  opacity: 1;
-  filter: blur(0);
-  transform: translateY(0);
-}
-
-.project-meta {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  opacity: 0.65;
-}
-
-.project-title {
-  margin: 0;
-  font-size: 28px;
-  line-height: 1.05;
   font-weight: 300;
+  color: white;
+  opacity: 0;
+  filter: blur(8px);
+  transition: 1.6s ease;
 }
 
-/* awkward placements */
-.project-1 {
-  top: 12%;
-  left: 8%;
+.fragment.main {
+  top: 30%;
+  left: 18%;
+  font-size: 42px;
 }
 
-.project-2 {
-  top: 44%;
-  left: 48%;
-}
-
-.project-3 {
-  top: 26%;
-  right: 10%;
+.fragment.secondary {
+  top: 55%;
+  right: 18%;
+  font-size: 22px;
   text-align: right;
 }
 
-.georgian-fragment {
+.ghost-word {
   position: absolute;
-  top: 18%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 120px;
-  color: rgba(255,255,255,0.06);
-  pointer-events: none;
+  font-size: 140px;
+  color: rgba(255,255,255,0.05);
 }
 
-.void-trigger {
+/* VOID */
+.void {
   position: absolute;
-  left: 34%;
-  top: 63%;
-  width: 90px;
-  height: 90px;
-  border: 0;
-  background: transparent;
-  opacity: 0;
+  width: 120px;
+  height: 120px;
+  left: 40%;
+  top: 60%;
   cursor: pointer;
 }
 
 /* HIDDEN */
-.hidden-layer {
-  z-index: 30;
+.hidden {
+  position: fixed;
+  inset: 0;
   background: #000;
+  color: white;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1s ease;
-}
-
-.hidden-layer.is-visible {
-  opacity: 1;
-  pointer-events: auto;
+  transition: 1.2s ease;
 }
 
 .hidden-inner {
   padding: 40px;
-  max-width: 640px;
+  max-width: 600px;
 }
 
-.hidden-kicker {
-  margin: 0 0 48px;
+.hidden-line {
   font-size: 12px;
-  letter-spacing: 0.14em;
-  opacity: 0.8;
+  margin-bottom: 40px;
 }
 
-.hidden-fragments p {
-  margin: 0 0 10px;
+.hidden-text p {
   font-size: 32px;
-  line-height: 1.03;
-  font-weight: 300;
+  margin: 0 0 8px;
 }
 
-/* STATE CHANGES */
-body.enter .ghost {
-  opacity: 0.38;
+/* STATES */
+.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-body.enter .base {
-  filter: blur(1.5px) brightness(0.55);
+.enter .ghost {
+  opacity: 0.4;
 }
 
-body.enter #text1,
-body.enter #text2 {
-  opacity: 0;
-  transform: translateY(-6px);
+.enter .base {
+  filter: blur(2px) brightness(0.6);
+}
+
+.enter .fragment {
+  opacity: 0.7;
+  filter: blur(0);
+}
+
+.enter .location {
+  opacity: 1;
+}
+
+.hidden.active {
+  opacity: 1;
+  pointer-events: auto;
 }
