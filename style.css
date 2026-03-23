@@ -1,49 +1,264 @@
-/* HIDDEN VOID */
-.void-trigger {
-  position: absolute;
-  left: 34%;
-  top: 62%;
-  width: 90px;
-  height: 90px;
-  opacity: 0;
-  z-index: 30;
-  cursor: pointer;
+:root {
+  --bg: #000;
+  --fg: #fff;
 }
 
-/* HIDDEN LAYER */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Arial, sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.site-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* LANDING */
+.landing,
+.world,
 .hidden-layer {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  background: black;
-  color: white;
+}
+
+.landing {
+  z-index: 10;
+}
+
+.landing-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform 0.35s ease-out,
+    opacity 1.8s ease,
+    filter 1.8s ease;
+}
+
+.base {
+  z-index: 1;
+  filter: blur(6px) brightness(0.32);
+  transform: scale(1.06);
+}
+
+.ghost {
+  z-index: 2;
+  opacity: 0;
+  filter: blur(14px) brightness(0.45);
+  transform: scale(1.1);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.12;
+  pointer-events: none;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+}
+
+.landing-copy {
+  position: absolute;
+  left: 40px;
+  bottom: 30px;
+  z-index: 4;
+}
+
+.intro-line {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1.3s ease, transform 1.3s ease;
+}
+
+.intro-line + .intro-line {
+  margin-top: 8px;
+}
+
+.intro-line.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* WORLD */
+.world {
+  z-index: 20;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1.4s ease;
-  z-index: 100;
+  transition: opacity 1.8s ease;
 }
 
-.hidden-layer.show {
+.world.is-visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-.hidden-copy {
+.world-meta {
   position: absolute;
-  left: 42px;
-  top: 42px;
-  max-width: 520px;
+  right: 40px;
+  bottom: 30px;
+  z-index: 3;
 }
 
-.hidden-line {
+.world-label {
+  margin: 0;
   font-size: 12px;
   letter-spacing: 0.14em;
-  margin-bottom: 48px;
+  opacity: 0.9;
+}
+
+.field {
+  position: absolute;
+  inset: 0;
+}
+
+.project {
+  position: absolute;
+  max-width: 320px;
+  opacity: 0.35;
+  filter: blur(8px);
+  transform: translateY(18px);
+  transition:
+    opacity 1.2s ease,
+    filter 1.2s ease,
+    transform 1.2s ease;
+}
+
+.project.is-active,
+.project:hover {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+.project-meta {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  opacity: 0.65;
+}
+
+.project-title {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1.05;
+  font-weight: 300;
+}
+
+/* awkward placements */
+.project-1 {
+  top: 12%;
+  left: 8%;
+}
+
+.project-2 {
+  top: 44%;
+  left: 48%;
+}
+
+.project-3 {
+  top: 26%;
+  right: 10%;
+  text-align: right;
+}
+
+.georgian-fragment {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 120px;
+  color: rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+
+.void-trigger {
+  position: absolute;
+  left: 34%;
+  top: 63%;
+  width: 90px;
+  height: 90px;
+  border: 0;
+  background: transparent;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* HIDDEN */
+.hidden-layer {
+  z-index: 30;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.hidden-layer.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hidden-inner {
+  padding: 40px;
+  max-width: 640px;
+}
+
+.hidden-kicker {
+  margin: 0 0 48px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   opacity: 0.8;
 }
 
 .hidden-fragments p {
-  margin: 0 0 8px 0;
-  font-size: 28px;
-  line-height: 1.05;
+  margin: 0 0 10px;
+  font-size: 32px;
+  line-height: 1.03;
   font-weight: 300;
+}
+
+/* STATE CHANGES */
+body.enter .ghost {
+  opacity: 0.38;
+}
+
+body.enter .base {
+  filter: blur(1.5px) brightness(0.55);
+}
+
+body.enter #text1,
+body.enter #text2 {
+  opacity: 0;
+  transform: translateY(-6px);
 }
