@@ -1,86 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OUTSIDER</title>
-  <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<main class="stage">
-
-  <!-- MEMORY LAYER -->
-  <div class="memory">
-    <img src="images/room.jpg" class="bg base" />
-    <img src="images/room.jpg" class="bg ghost" />
     <div class="grain"></div>
-  </div>
+    
+    <img src="images/room.jpg" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:brightness(0.2) grayscale(100%); z-index:1;">
 
-  <!-- INTERFACE -->
-  <div class="interface">
+    <img src="images/room.jpg" class="ghost-entry">
 
-    <div class="corner left" id="text1">
-      You weren’t supposed to find this.
+    <div class="chat-layer" id="chat-box">
+        <p id="question-display">Are you waiting for someone?</p>
+        <input type="text" id="existential-input" autocomplete="off" placeholder="...">
     </div>
 
-    <div class="corner right" id="text2">
-      ...stay.
-    </div>
-
-    <div class="location">
-      Berlin. Tbilisi. Somewhere between.
-    </div>
-
-  </div>
-
-  <!-- FRAGMENTS -->
-  <div class="fragments">
-
-    <div class="fragment main">
-      I knew every street.
-    </div>
-
-    <div class="fragment secondary">
-      Visible. Not fully seen.
-    </div>
-
-    <div class="void" id="void"></div>
-
-  </div>
-
-  <!-- HIDDEN -->
-  <div class="hidden" id="hidden">
-    <div class="hidden-inner">
-
-      <p class="hidden-line">You weren’t meant to see this.</p>
-
-      <div class="hidden-text">
-        <p>I went back.</p>
-        <p>Nothing had changed.</p>
-        <p>I had.</p>
-
-        <br/>
-
-        <p>I knew every street.</p>
-        <p>None of them knew me.</p>
-
-        <br/>
-
-        <p>Two places.</p>
-        <p>No position.</p>
-
-        <br/>
-
-        <p>Visible.</p>
-        <p>Not fully seen.</p>
-      </div>
-
-    </div>
-  </div>
-
-</main>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
