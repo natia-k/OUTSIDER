@@ -1,4 +1,3 @@
-/* style.css */
 body, html {
     margin: 0; padding: 0;
     background: #000; color: #fff;
@@ -9,45 +8,46 @@ body, html {
 .grain {
     position: fixed; inset: 0; z-index: 100;
     background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-    opacity: 0.03; pointer-events: none;
+    opacity: 0.04; pointer-events: none;
 }
 
-/* Base Room */
-.base-layer img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; filter: grayscale(100%) brightness(0.15);
+/* Background: Visible enough to create an environment */
+.bg-base {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; filter: grayscale(100%) brightness(0.22);
+    z-index: 1; transition: filter 0.2s;
 }
 
-/* The Ghost layers */
+/* Ghost layers: The "Poster" style manifestation */
 .ghost {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; mix-blend-mode: screen; opacity: 0;
-    filter: grayscale(100%) blur(12px) brightness(0.5);
+    filter: grayscale(100%) blur(15px) brightness(0.5);
+    z-index: 2;
 }
 
-.ghost1 { animation: ghost-cycle 15s infinite; }
-.ghost2 { animation: ghost-cycle 22s infinite 3s; }
-.ghost3 { animation: ghost-cycle 18s infinite 7s; }
+.ghost-1 { animation: manifest 18s ease-in-out infinite; }
+.ghost-2 { animation: manifest 24s ease-in-out infinite 5s; }
 
-@keyframes ghost-cycle {
-    0% { opacity: 0; transform: scale(1.05) translate(0,0); }
-    50% { opacity: 0.12; transform: scale(1) translate(10px, -5px); }
-    100% { opacity: 0; transform: scale(1.05) translate(-10px, 5px); }
+@keyframes manifest {
+    0% { opacity: 0; transform: scale(1.1) translate(-5px, 5px); }
+    50% { opacity: 0.18; transform: scale(1.02) translate(5px, -5px); }
+    100% { opacity: 0; transform: scale(1.1) translate(-5px, 5px); }
 }
 
-/* Existential UI */
+/* UI Elements */
 .interface {
     position: relative; z-index: 50;
     display: flex; align-items: center; justify-content: center;
     height: 100vh;
 }
 
-.existential { text-align: center; width: 80%; max-width: 400px; }
+.existential { text-align: center; width: 80%; max-width: 450px; }
 
 #question {
     font-family: monospace; font-size: 10px; text-transform: uppercase;
-    letter-spacing: 0.3em; color: rgba(255,255,255,0.4);
-    margin-bottom: 20px; transition: opacity 1s;
+    letter-spacing: 0.4em; color: rgba(255,255,255,0.4);
+    margin-bottom: 25px; transition: opacity 1.5s;
 }
 
 #answer {
@@ -56,3 +56,11 @@ body, html {
     color: #fff; width: 100%; font-style: italic;
     font-size: 18px; text-align: center; outline: none;
 }
+
+.meta {
+    position: fixed; font-family: monospace; font-size: 9px;
+    letter-spacing: 0.3em; color: rgba(255,255,255,0.2);
+    z-index: 60; text-transform: uppercase;
+}
+.top-left { top: 30px; left: 30px; }
+.bottom-right { bottom: 30px; right: 30px; writing-mode: vertical-rl; }
