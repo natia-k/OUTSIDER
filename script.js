@@ -12,33 +12,28 @@ let qIndex = 0;
 window.onload = () => {
     const input = document.getElementById("answer");
     const qText = document.getElementById("question");
-    const room = document.getElementById("base-room");
 
     input.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && input.value.trim() !== "") {
             
-            // TENSION GLITCH: The room flashes
-            room.style.filter = "grayscale(100%) brightness(0.6) blur(2px)";
+            // Fade out current state
+            qText.style.opacity = 0;
+            input.style.opacity = 0;
             
             setTimeout(() => {
-                room.style.filter = "grayscale(100%) brightness(0.22) blur(0px)";
-                
-                // Save and transition logic
-                console.log("Saving secret:", input.value);
                 input.value = "";
                 qIndex++;
 
                 if (qIndex < questions.length) {
-                    qText.style.opacity = 0;
-                    setTimeout(() => {
-                        qText.innerText = questions[qIndex];
-                        qText.style.opacity = 1;
-                    }, 1000);
+                    qText.innerText = questions[qIndex];
+                    qText.style.opacity = 1;
+                    input.style.opacity = 1;
+                    input.focus();
                 } else {
-                    qText.innerText = "You are part of the room now.";
+                    qText.innerText = "You have been heard.";
                     input.style.display = "none";
                 }
-            }, 150);
+            }, 1000);
         }
     });
 };
