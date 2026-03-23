@@ -16,7 +16,7 @@ window.onload = () => {
     input.addEventListener("keydown", (e) => {
         if (e.key === "Enter" && input.value.trim() !== "") {
             
-            // Fade out current state
+            // Visual feedback: brief fade
             qText.style.opacity = 0;
             input.style.opacity = 0;
             
@@ -30,7 +30,7 @@ window.onload = () => {
                     input.style.opacity = 1;
                     input.focus();
                 } else {
-                    qText.innerText = "You have been heard.";
+                    qText.innerText = "You have been heard. You can leave now.";
                     input.style.display = "none";
                 }
             }, 1000);
