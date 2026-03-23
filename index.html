@@ -1,31 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OUTSIDER</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="grain"></div>
-    
-    <img src="images/room.jpg" id="base-room" class="bg-base" alt="room">
+body, html {
+    margin: 0; padding: 0;
+    background: #000000;
+    color: #fff;
+    height: 100vh; overflow: hidden;
+    font-family: serif; cursor: crosshair;
+}
 
-    <div class="ghost-container">
-        <img src="images/nostalgia.png" class="moving-ghost ghost-1">
-        <img src="images/nostalgia.png" class="moving-ghost ghost-2">
-    </div>
+.grain {
+    position: fixed; inset: 0; z-index: 100;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.07; pointer-events: none;
+}
 
-    <div class="interface">
-        <div class="existential">
-            <p id="question">Are you actually here?</p>
-            <input type="text" id="answer" placeholder="type and press enter" spellcheck="false" autocomplete="off">
-        </div>
-    </div>
+/* THE GHOSTS: These are your transparent figures */
+.moving-ghost {
+    position: fixed;
+    height: 90vh; 
+    width: auto;
+    /* Glow effect tailored for a transparent PNG */
+    filter: brightness(1.3) drop-shadow(0 0 25px rgba(255,255,255,0.25));
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+}
 
-    <div class="meta top-left">OUTSIDER // 2026</div>
-    <div class="meta bottom-right">Tbilisi . Berlin . Somewhere between</div>
+.ghost-1 {
+    top: 5%;
+    left: -30%;
+    animation: walk-right 40s linear infinite;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.ghost-2 {
+    bottom: -5%;
+    right: -30%;
+    height: 100vh;
+    animation: walk-left 50s linear infinite 15s;
+}
+
+@keyframes walk-right {
+    0% { left: -30%; opacity: 0; }
+    20% { opacity: 0.3; }
+    80% { opacity: 0.3; }
+    100% { left: 120%; opacity: 0; }
+}
+
+@keyframes walk-left {
+    0% { right: -30%; opacity: 0; }
+    20% { opacity: 0.2; }
+    80% { opacity: 0.2; }
+    100% { right: 120%; opacity: 0; }
+}
+
+/* UI Elements */
+.interface {
+    position: relative; z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh;
+}
+.existential { text-align: center; width: 80%; max-width: 450px; }
+#question {
+    font-family: monospace; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.4em; color: rgba(255,255,255,0.5);
+    margin-bottom: 25px;
+}
+#answer {
+    background: transparent; border: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    color: #fff; width: 100%; font-style: italic;
+    font-size: 20px; text-align: center; outline: none;
+    padding: 10px;
+}
+.meta {
+    position: fixed; font-family: monospace; font-size: 9px;
+    letter-spacing: 0.3em; color: rgba(255,255,255,0.2);
+    z-index: 60; text-transform: uppercase;
+}
+.top-left { top: 40px; left: 40px; }
+.bottom-right { bottom: 40px; right: 40px; writing-mode: vertical-rl; }
